@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>My Events</h1>
+
+<form action="/events" method="post">
+    <label for="date">Date</label>
+    <input type="date" data-date-format="mm/dd/yy" name="date" id="date">
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" required>
+    <label for="Number of Guests">Number of Guests</label>
+    <input type="number" name="Number of Guests" id="Number of Guests">
+    <label for="location">Location</label>
+    <input type="text" name="location" id="location"></input>
+    <label for="description">Description</label>
+    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    <label for="done">Done</label>
+    <input type="checkbox" name="done" id="done" value="True">
+    <label for="recurring">Recurring</label>
+    <input type="checkbox" name="recurring" id="recurring" value="True">
+    <input type="submit" value="Add Event">
+
+
+
+
+</form>
+
+{% for event in events %}
+<div>
+    <p>
+        <b>{{event.date}}:</b> {{event.name}} {{event.num_guests}} {{event.room_location}} {{event.description}}
+        {% if event.done %}
+        <span>&#9989;</span>
+        {% endif %}
+        {% if event.recurring %}
+        <span>&#10144;</span>
+        {% endif %}
+
+    </p>
+</div>
+{% endfor %}
+
+{% endblock %}
