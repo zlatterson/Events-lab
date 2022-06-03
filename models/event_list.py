@@ -19,3 +19,6 @@ events = [event1, event2, event3]
 
 def add_new_event(event):
     events.append(event)
+
+def delete_new_event(event_index):
+    events.pop(int(event_index))

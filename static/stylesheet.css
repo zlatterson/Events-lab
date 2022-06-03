@@ -1,0 +1,22 @@
+body {
+    background-color:antiquewhite;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#events-form{
+    display:flex;
+    justify-content: space-between;
+    padding: 1rem;
+
+}
+#events-form > input {
+    display: flex;
+    height: 2rem;
+}
+
+#event-items{
+    padding: 0.1rem;
+    background-color: white;
+    border-style:solid;
+
+}

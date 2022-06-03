@@ -12,7 +12,9 @@ def index():
 
 @app.route("/events", methods=["POST"])
 def add_event():
-    event_date = request.form["date"]
+
+    new_date = request.form["date"]
+    event_date = new_date.split("-")[2] + "/" + new_date.split("-")[1] + "/" + new_date.split("-")[0][4-2:]
     event_name = request.form["title"]
     event_num_guests = request.form["Number of Guests"]
     event_location = request.form["location"]
@@ -35,3 +37,10 @@ def add_event():
     )
     add_new_event(new_event)
     return render_template("index.html", title="Home", events=events)
+
+@app.route("/events/delete/<index>", methods=["post"])
+def delete_event(index):
+    print(index)
+    delete_new_event(index)
+    return render_template("index.html", title="Home", events=events)
+

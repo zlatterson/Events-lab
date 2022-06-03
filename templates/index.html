@@ -4,21 +4,28 @@
 
 <h1>My Events</h1>
 
-<form action="/events" method="post">
+<form action="/events" method="post" id="events-form">
     <label for="date">Date</label>
     <input type="date" data-date-format="mm/dd/yy" name="date" id="date">
+    <br>
     <label for="title">Title</label>
     <input type="text" name="title" id="title" required>
+    <br>
     <label for="Number of Guests">Number of Guests</label>
     <input type="number" name="Number of Guests" id="Number of Guests">
+    <br>
     <label for="location">Location</label>
     <input type="text" name="location" id="location"></input>
+    <br>
     <label for="description">Description</label>
-    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    <textarea name="description" id="description" cols="10" rows="5"></textarea>
+    <br>
     <label for="done">Done</label>
     <input type="checkbox" name="done" id="done" value="True">
+    <br>
     <label for="recurring">Recurring</label>
     <input type="checkbox" name="recurring" id="recurring" value="True">
+    <br>
     <input type="submit" value="Add Event">
 
 
@@ -27,15 +34,18 @@
 </form>
 
 {% for event in events %}
-<div>
+<div id="event-items">
     <p>
-        <b>{{event.date}}:</b> {{event.name}} {{event.num_guests}} {{event.room_location}} {{event.description}}
+        <b>{{event.date}}:</b> {{event.name}} <br> Guests: {{event.num_guests}} <br> Location: {{event.room_location}} <br> Description: {{event.description}} <br>
         {% if event.done %}
-        <span>&#9989;</span>
+        &#9989;
         {% endif %}
         {% if event.recurring %}
-        <span>&#10144;</span>
+        Recurring
         {% endif %}
+        <form action = "/events/delete/{{events.index(event)}}" method = "post">
+            <input type="submit" value = "Delete">
+        </form>
 
     </p>
 </div>
